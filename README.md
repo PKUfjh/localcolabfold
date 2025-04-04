@@ -1,5 +1,28 @@
 # LocalColabFold
 
+
+# Installation guide
+```bash
+conda create -n colab -c conda-forge -c bioconda \
+    git python=3.10 openmm==8.2.0 pdbfixer \
+    kalign2=2.04 hhsuite=3.3.0 mmseqs2 -y
+conda activate colab
+pip install --no-warn-conflicts "colabfold[alphafold-minus-jax] @ git+https://github.com/sokrypton/ColabFold"
+pip install "colabfold[alphafold]"
+pip install --upgrade "jax[cuda12]">=0.5.2
+pip install --upgrade tensorflow
+pip install silence_tensorflow
+```
+
+# Run Colabfold
+```bash
+# in Network node
+colabfold_batch examples/ results
+# in compute node
+colabfold_batch examples/ results
+```
+
+
 [ColabFold](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/AlphaFold2.ipynb) on your local PC (or macOS). See also [ColabFold repository](https://github.com/sokrypton/ColabFold).
 
 ## What is LocalColabFold?
