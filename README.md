@@ -3,22 +3,23 @@
 
 # Installation guide
 ```bash
-conda create -n colab -c conda-forge -c bioconda \
-    git python=3.10 openmm==8.2.0 pdbfixer \
-    kalign2=2.04 hhsuite=3.3.0 mmseqs2 -y
+conda create -n colab python=3.9
 conda activate colab
-pip install --no-warn-conflicts "colabfold[alphafold-minus-jax] @ git+https://github.com/sokrypton/ColabFold"
+pip install -U "jax[cuda12]"
+pip install "colabfold[alphafold-minus-jax]"
 pip install "colabfold[alphafold]"
-pip install --upgrade "jax[cuda12]">=0.5.2
 pip install --upgrade tensorflow
 pip install silence_tensorflow
+# in our server
+cd /data/run01/scw6ciu/software/ColabFold
+pip install .
 ```
 
 # Run Colabfold
 ```bash
-# in Network node
-colabfold_batch examples/ results
-# in compute node
+# in Network node 登录节点
+JAX_PLATFORMS=cpu colabfold_batch examples/ results --msa-only
+# in compute node 计算节点
 colabfold_batch examples/ results
 ```
 
