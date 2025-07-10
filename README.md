@@ -3,16 +3,16 @@
 
 # Installation guide
 ```bash
-conda create -n colab python=3.9
+conda create -n colab python=3.10
 conda activate colab
 pip install -U "jax[cuda12]"
 pip install "colabfold[alphafold-minus-jax]"
 pip install "colabfold[alphafold]"
 pip install --upgrade tensorflow
 pip install silence_tensorflow
-# in our server
-cd /data/run01/scw6ciu/software/ColabFold
+git clone git@github.com:sokrypton/ColabFold.git
 pip install .
+pip install "colabfold[alphafold]"
 ```
 
 # Run Colabfold
